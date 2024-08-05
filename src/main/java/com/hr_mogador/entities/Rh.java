@@ -7,8 +7,8 @@ import java.util.List;
 @Entity
 public class Rh {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRH;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idRh;
     private String prenomRH;
     private String nomRH;
     private String emailRH;
@@ -17,8 +17,11 @@ public class Rh {
     @OneToMany(mappedBy = "rh")
     private List<Employe> employes;
 
+    @OneToOne(mappedBy = "rh")
+    private Utilisateur utilisateur;
+
     public Long getIdRH() {
-        return idRH;
+        return idRh;
     }
 
     public String getPrenomRH() {
@@ -35,6 +38,14 @@ public class Rh {
 
     public String getCountry() {
         return country;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     public List<Employe> getEmployes() {

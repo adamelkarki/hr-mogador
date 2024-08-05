@@ -21,12 +21,19 @@ public class Employe {
     @JoinColumn(name = "idRH")
     private Rh rh;
 
-    @OneToMany
+    @OneToMany(mappedBy = "employe")
     private List<Conges> conges;
+
+    @OneToMany(mappedBy = "employe")
+    private List<Paies> paies;
+
+    @OneToOne(mappedBy = "employe")
+    private Utilisateur utilisateur;
 
     public Long getIdEmploye() {
         return idEmploye;
     }
+
     public String getPrenomEmploye() {
         return prenomEmploye;
     }
@@ -59,6 +66,14 @@ public class Employe {
         this.poste = poste;
     }
 
+    public String getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(String departement) {
+        this.departement = departement;
+    }
+
     public LocalDate getDataDembauche() {
         return dataDembauche;
     }
@@ -83,11 +98,19 @@ public class Employe {
         this.conges = conges;
     }
 
-    public String getDepartement() {
-        return departement;
+    public List<Paies> getPaies() {
+        return paies;
     }
 
-    public void setDepartement(String departement) {
-        this.departement = departement;
+    public void setPaies(List<Paies> paies) {
+        this.paies = paies;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 }
